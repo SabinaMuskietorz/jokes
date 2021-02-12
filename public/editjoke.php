@@ -1,6 +1,7 @@
 <?php
 require '../loadTemplate.php';
 	require '../dbconfig.php';
+	require '../functions.php';
 	
 	if (isset($_POST['submit'])) {
 		$stmt = $pdo->prepare('UPDATE joke
@@ -21,15 +22,7 @@ require '../loadTemplate.php';
 	//If the form has not been submitted, check that a news article has been selected to be edited e.g. editnews.php?id=3
 	else if (isset($_GET['id'])) {
 	
-		$jokeStmt = $pdo->prepare('SELECT * FROM joke WHERE id = :id');
-	
-		$values = [
-			'id' => $_GET['id']
-		];
-	
-		$jokeStmt->execute($values);
-	
-		$joke = $jokeStmt->fetch();
+		$joke = findJoke($pdo, $_GET['id']);
 ?><?php
 	        ob_start();
         require '../templates/editjoke.html.php';
