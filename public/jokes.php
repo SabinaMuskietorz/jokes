@@ -4,7 +4,7 @@ require 'dbconfig.php';
 $stmt =$pdo->prepare ('SELECT * FROM joke');
 $stmt ->execute();
 
-require '../loadTemplate.php';
+require '../templates/loadTemplate.php';
 
 $title = 'Joke list';
 

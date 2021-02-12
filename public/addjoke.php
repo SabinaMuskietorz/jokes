@@ -1,5 +1,5 @@
 <?php
-require '../loadTemplate.php';
+require '../templates/loadTemplate.php';
 	require 'dbconfig.php';
 if (isset($_POST['joketext'])) {
 	
