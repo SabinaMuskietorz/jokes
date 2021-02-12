@@ -6,15 +6,14 @@ if (isset($_POST['joketext'])) {
 
 	$date = new DateTime();
 
-	$sql = 'INSERT INTO `joke` (joketext,jokedate) VALUES (:joketext, :jokedate)';
+	$joke = [
+		'joketext' => $_POST['joketext'],
+		'jokedate' => $date->format('Y-m-d H:i:s')
+	];
 
-	$stmt = $pdo->prepare($sql);
-
-	$stmt->execute(['joketext' => $_POST['joketext'], 'jokedate' => $date->format('Y-m-d H:i:s')]);
+	insertJoke($pdo, $joke);
 
 	header('location: jokes.php');
-
-
 
 }
 else {

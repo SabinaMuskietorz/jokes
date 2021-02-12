@@ -4,32 +4,24 @@ require '../loadTemplate.php';
 	require '../functions.php';
 	
 	if (isset($_POST['submit'])) {
-		$stmt = $pdo->prepare('UPDATE joke
-                               SET joketext = :joketext , jokedate = :jokedate
-                               WHERE id = :id');
-		
-		$values = [
-			'joketext' => $_POST['joketext'],
-			'jokedate' => $_POST['jokedate'],
-			'id' => $_POST['id']
+		$joke = [
+			'joketext' => $_POST['joketext']
 		];
-	
-		$stmt->execute($values);
+
+		updateJoke($pdo, $joke, 'id', $_POST['id']);
+		
 		echo ' Joke <br> ' . $_POST['joketext'] . ' <br>has been edited';
 		echo '<p><a href="jokes.php">back to jokes</a>';
+		header('location: jokes.php');
 		
 	}
-	//If the form has not been submitted, check that a news article has been selected to be edited e.g. editnews.php?id=3
-	else if (isset($_GET['id'])) {
+	//If the form has not been submitted, check that a joke has been selected to be edited e.g. editjoke.php?id=3
+	else {
 	
 		$joke = findJoke($pdo, $_GET['id']);
-?><?php
-	        ob_start();
-        require '../templates/editjoke.html.php';
-        $output = ob_get_clean();
-        require '../templates/layout.html.php';
-        ?>
-	<?php
-	
+		$output = loadTemplate('../templates/editjoke.html.php', ['joke' =>$joke]);
+		$title = 'Edit joke';
 	}
+	
+        require '../templates/layout.html.php';
 	?>

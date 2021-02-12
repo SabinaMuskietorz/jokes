@@ -1,5 +1,6 @@
 <?php
 require '../loadTemplate.php';
+require '../dbconfig.php';
 require '../functions.php';
 
 $title = 'Internet Joke Database';

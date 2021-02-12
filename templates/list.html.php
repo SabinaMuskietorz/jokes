@@ -1,7 +1,18 @@
-<?php foreach($stmt as $joke) { ?>
+<?php 
+echo '<ul>';
+foreach($stmt as $joke) { 
+    ?>
 <blockquote>
 <p> <?=$joke['joketext']?> <br>
     <a href="editjoke.php?id=<?= $joke['id'] ?>">Edit</a>
-    <P>
+
+    <form action="deletejoke.php" method="POST">
+    <input type="hidden" name="id" value="<?=$joke['id']?>" />
+    <input type="submit" name="submit" value="Delete" />
+    </form>
+    </p>
 </blockquote>
-<?php } ?>
+<?php 
+echo '</ul>';
+}
+ ?>
