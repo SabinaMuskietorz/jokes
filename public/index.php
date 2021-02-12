@@ -1,5 +1,5 @@
 <?php
-require '../templates/loadTemplate.php';
+require '../loadTemplate.php';
 
 $title = 'Internet Joke Database';
 

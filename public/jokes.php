@@ -1,10 +1,10 @@
 <?php
-require 'dbconfig.php';
+require '../dbconfig.php';
 
 $stmt =$pdo->prepare ('SELECT * FROM joke');
 $stmt ->execute();
 
-require '../templates/loadTemplate.php';
+require '../loadTemplate.php';
 
 $title = 'Joke list';
 

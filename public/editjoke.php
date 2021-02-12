@@ -1,6 +1,6 @@
 <?php
-require '../templates/loadTemplate.php';
-	require 'dbconfig.php';
+require '../loadTemplate.php';
+	require '../dbconfig.php';
 	
 	if (isset($_POST['submit'])) {
 		$stmt = $pdo->prepare('UPDATE joke
