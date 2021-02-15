@@ -1,14 +1,14 @@
 <?php
-require '../dbconfig.php';
-
-$stmt =$pdo->prepare ('SELECT * FROM joke');
-$stmt ->execute();
-
 require '../loadTemplate.php';
+require '../dbconfig.php';
+require '../functions.php';
+
+
+$jokes = findAll($pdo, 'joke');
 
 $title = 'Joke list';
 
-$templateVars = [ 'stmt' => $stmt ];
+$templateVars = [ 'jokes' => $jokes];
 
 $output = loadTemplate('../templates/list.html.php', $templateVars);
 

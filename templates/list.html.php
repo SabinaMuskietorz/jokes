@@ -1,6 +1,6 @@
 <?php 
 echo '<ul>';
-foreach($stmt as $joke) { 
+foreach($jokes as $joke) { 
     ?>
 <blockquote>
 <p> <?=$joke['joketext']?> <br>

@@ -5,10 +5,11 @@ require '../loadTemplate.php';
 	
 	if (isset($_POST['submit'])) {
 		$joke = [
-			'joketext' => $_POST['joketext']
+			'joketext' => $_POST['joketext'],
+			'id' => $_POST['id']
 		];
 
-		updateJoke($pdo, $joke, 'id', $_POST['id']);
+		update($pdo, 'joke', $joke, 'id');
 		
 		echo ' Joke <br> ' . $_POST['joketext'] . ' <br>has been edited';
 		echo '<p><a href="jokes.php">back to jokes</a>';
@@ -18,8 +19,12 @@ require '../loadTemplate.php';
 	//If the form has not been submitted, check that a joke has been selected to be edited e.g. editjoke.php?id=3
 	else {
 	
-		$joke = findJoke($pdo, $_GET['id']);
-		$output = loadTemplate('../templates/editjoke.html.php', ['joke' =>$joke]);
+		$jokes = find($pdo, 'joke', 'id', $_GET['id']);
+		$templateVars = [
+			'joke' => $jokes[0]
+		];
+
+		$output = loadTemplate('../templates/editjoke.html.php', $templateVars);
 		$title = 'Edit joke';
 	}
 	
