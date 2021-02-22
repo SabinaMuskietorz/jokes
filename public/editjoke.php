@@ -4,27 +4,26 @@ require '../loadTemplate.php';
 	require '../functions.php';
 	
 	if (isset($_POST['submit'])) {
-		$joke = [
-			'joketext' => $_POST['joketext'],
-			'id' => $_POST['id']
-		];
+		$date = new DateTime();
+
+		$joke = $_POST['joke'];
+		$joke['jokedate'] = $date->format('Y-m-d H:i:s');
 
 		save($pdo, 'joke', $joke, 'id');
-		
-		echo ' Joke <br> ' . $_POST['joketext'] . ' <br>has been edited';
-		echo '<p><a href="jokes.php">back to jokes</a>';
+
 		header('location: jokes.php');
 		
 	}
-	//If the form has not been submitted, check that a joke has been selected to be edited e.g. editjoke.php?id=3
 	else {
-	
-		$jokes = find($pdo, 'joke', 'id', $_GET['id']);
-		$templateVars = [
-			'joke' => $jokes[0]
-		];
-
-		$output = loadTemplate('../templates/editjoke.html.php', $templateVars);
+		if (isset($_GET['id'])) {
+			$result = find($pdo, 'joke', 'id', $_GET['id']);
+			$joke = $result[0];
+		}
+		else {
+			$joke = false;
+		}
+		
+		$output = loadTemplate('../templates/editjoke.html.php', ['joke' => $joke]);
 		$title = 'Edit joke';
 	}
 	
