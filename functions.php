@@ -32,6 +32,15 @@ function delete($pdo, $table, $field, $value) {
     ];
     $stmt->execute($criteria);
    }
+function save($pdo, $table, $record, $primaryKey) {
+     try {
+         insert($pdo, $table, $record);
+     }
+     catch (Exception $e) {
+         update($pdo, $table, $record, $primaryKey);
+        }
+}
+
 
 function update($pdo, $table, $record, $primaryKey) {
  $query = 'UPDATE ' . $table . ' SET ';

@@ -9,7 +9,7 @@ require '../loadTemplate.php';
 			'id' => $_POST['id']
 		];
 
-		update($pdo, 'joke', $joke, 'id');
+		save($pdo, 'joke', $joke, 'id');
 		
 		echo ' Joke <br> ' . $_POST['joketext'] . ' <br>has been edited';
 		echo '<p><a href="jokes.php">back to jokes</a>';
