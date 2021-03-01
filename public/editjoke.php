@@ -1,7 +1,10 @@
 <?php
-require '../loadTemplate.php';
+    require '../loadTemplate.php';
 	require '../dbconfig.php';
-	require '../functions.php';
+	require '../DatabaseTable.php';
+
+	$jokesTable = new DatabaseTable($pdo, 'joke', 'id');
+	
 	
 	if (isset($_POST['submit'])) {
 		$date = new DateTime();
@@ -9,14 +12,14 @@ require '../loadTemplate.php';
 		$joke = $_POST['joke'];
 		$joke['jokedate'] = $date->format('Y-m-d H:i:s');
 
-		save($pdo, 'joke', $joke, 'id');
+		$jokesTable->save($joke);
 
 		header('location: jokes.php');
 		
 	}
 	else {
 		if (isset($_GET['id'])) {
-			$result = find($pdo, 'joke', 'id', $_GET['id']);
+			$result = $jokesTable->find('id', $_GET['id']);
 			$joke = $result[0];
 		}
 		else {

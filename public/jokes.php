@@ -1,10 +1,10 @@
 <?php
 require '../loadTemplate.php';
 require '../dbconfig.php';
-require '../functions.php';
+require '../DatabaseTable.php';
 
-
-$jokes = findAll($pdo, 'joke');
+$jokesTable = new DatabaseTable($pdo, 'joke', 'id');
+$jokes = $jokesTable->findAll();
 
 $title = 'Joke list';
 
