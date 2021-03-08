@@ -8,7 +8,7 @@
 
 		$jokesTable->save($joke);
 
-		header('location: index.php?page=jokes');
+		header('location: /jokes');
 		
 	}
 	else {
