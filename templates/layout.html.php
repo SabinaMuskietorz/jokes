@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="jokes.css">
+    <link rel="stylesheet" href="/jokes.css">
     <title><?=$title?></title>
   </head>
   <body>
@@ -12,8 +12,10 @@
     </header>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/jokes">Jokes List</a></li>
-      <li><a href="/editjoke">Add a new Joke</a></li>
+      <li><a href="/joke/list">Jokes List</a></li>
+      <li><a href="/joke/edit">Add a new Joke</a></li>
+      <li><a href="/category/list">Category List</a></li>
+      <li><a href="/category/edit">Add a new category</a></li>
     </ul>
   </nav>
 
