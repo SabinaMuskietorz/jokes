@@ -3,19 +3,25 @@ require '../functions/loadTemplate.php';
 require '../dbconfig.php';
 require '../classes/DatabaseTable.php';
 require '../controllers/JokeController.php';
+require '../Controllers/CategoryController.php';
 
 $jokesTable = new DatabaseTable($pdo, 'joke', 'id');
-$jokeController = new JokeController($jokesTable);
+$categoriesTable = new DatabaseTable($pdo, 'category', 'id');
 
-if ($_SERVER['REQUEST_URI'] !== '/') {
-    $functionName = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/') . '.php';
-    $page = $jokeController->$functionName();
+$controllers = [];
+$controllers['joke'] = new JokeController($jokesTable);
+$controllers['category'] = new CategoryController($categoriesTable);
+
+$route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
+if ($route == '') {
+    $page = $controllers['joke']->home();
 }
 else {
-    $page = $jokeController->home();
+    list($controllerName, $functionName) = explode('/', $route);
+    $controller = $controllers[$controllerName];
+    $page = $controller->$functionName();
 }
-
 $output = loadTemplate('../templates/' . $page['template'], $page['variables']);
 $title = $page['title'];
-
-require  '../templates/layout.html.php';
+require '../templates/layout.html.php';
+?>
