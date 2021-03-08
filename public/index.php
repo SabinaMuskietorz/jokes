@@ -3,10 +3,13 @@ require '../functions/loadTemplate.php';
 require '../dbconfig.php';
 require '../classes/DatabaseTable.php';
 
-$title = 'Internet Joke Database';
 $jokesTable = new DatabaseTable($pdo, 'joke', 'id');
-$jokes = $jokesTable->find('id', 1);
 
+if (isset($_GET['page'])) {
 require '../pages/' . $_GET['page'] . '.php';
+}
+else {
+    require '../pages/home.php';
+}
 
 require  '../templates/layout.html.php';
