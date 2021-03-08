@@ -1,12 +1,6 @@
 <?php
-    require '../loadTemplate.php';
-	require '../dbconfig.php';
-	require '../DatabaseTable.php';
 
-	$jokesTable = new DatabaseTable($pdo, 'joke', 'id');
-	
-	
-	if (isset($_POST['submit'])) {
+    if (isset($_POST['submit'])) {
 		$date = new DateTime();
 
 		$joke = $_POST['joke'];
@@ -14,7 +8,7 @@
 
 		$jokesTable->save($joke);
 
-		header('location: jokes.php');
+		header('location: index.php?page=jokes');
 		
 	}
 	else {
@@ -29,6 +23,4 @@
 		$output = loadTemplate('../templates/editjoke.html.php', ['joke' => $joke]);
 		$title = 'Edit joke';
 	}
-	
-        require '../templates/layout.html.php';
 	?>
