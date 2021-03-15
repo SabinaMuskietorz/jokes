@@ -1,16 +1,18 @@
 <?php
+namespace CSY2028;
+namespace Ijdb\Controllers;
 require '../functions/loadTemplate.php';
 require '../dbconfig.php';
-require '../classes/DatabaseTable.php';
+/*require '../classes/DatabaseTable.php';
 require '../controllers/JokeController.php';
-require '../Controllers/CategoryController.php';
+require '../Controllers/CategoryController.php';*/
 
-$jokesTable = new DatabaseTable($pdo, 'joke', 'id');
-$categoriesTable = new DatabaseTable($pdo, 'category', 'id');
+$jokesTable = new \CSY2028\DatabaseTable($pdo, 'joke', 'id');
+$categoriesTable = new \CSY2028\DatabaseTable($pdo, 'category', 'id');
 
 $controllers = [];
-$controllers['joke'] = new JokeController($jokesTable);
-$controllers['category'] = new CategoryController($categoriesTable);
+$controllers['joke'] = new Ijdb\Controllers\Joke($jokesTable);
+$controllers['category'] = new Ijdb\Controllers\Category($categoriesTable);
 
 $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
 if ($route == '') {
