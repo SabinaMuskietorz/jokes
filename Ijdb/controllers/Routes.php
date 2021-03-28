@@ -18,6 +18,9 @@ class Routes implements \CSY2028\Routes {
         $loginRoutes = [];
         $loginRoutes['joke/edit'] = true;
         $loginRoutes['category/edit'] = true;
+        $loginRoutes['joke/delete'] = true;
+        $loginRoutes['joke/delete'] = true;
+
         $requires\login = $loginRoutes[$route] ?? false;
         if ($requiresLogin && !isset($_SESSION['loggedin'])) {
             header('location: /user/login');
