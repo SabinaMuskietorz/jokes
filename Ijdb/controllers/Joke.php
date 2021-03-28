@@ -26,8 +26,7 @@ class JokeController {
             'title' => 'Internet Joke Database'
         ];
     }
-    public function edit() {
-        if (isset($_POST['submit'])) {
+    public function editSubmit() {
             $date = new DateTime();
     
             $joke = $_POST['joke'];
@@ -38,7 +37,7 @@ class JokeController {
             header('location: /joke/list');
             
         }
-        else {
+       public function edit() {
             if (isset($_GET['id'])) {
                 $result = $this->jokesTable->find('id', $_GET['id']);
                 $joke = $result[0];
@@ -53,4 +52,3 @@ class JokeController {
             ];
         }
     }
-}
