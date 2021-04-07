@@ -7,8 +7,8 @@ class DatabaseTable {
     private $entityClass;
     private $entityConstructor;
 
-    public function __construct($pdo, $table, $primarykey, $entityClass = 'stdclass', $entityConstructor = [] ) {
-        $this->po = $pdo;
+    public function __construct($pdo, $table, $primaryKey, $entityClass = 'stdclass', $entityConstructor = [] ) {
+        $this->pdo = $pdo;
         $this->table = $table;
         $this->primaryKey = $primaryKey;
         $this->entityClass = $entityClass;

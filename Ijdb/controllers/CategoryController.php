@@ -1,4 +1,5 @@
 <?php
+namespace Ijdb\controllers;
 class CategoryController {
     private $categoriesTable;
     public function __construct($categoriesTable) {

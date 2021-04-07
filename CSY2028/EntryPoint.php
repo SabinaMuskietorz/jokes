@@ -16,7 +16,7 @@ class EntryPoint {
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $functionName = $functionName . 'Submit';
     }
-    $contoller = $this->routes->getController($controllerName);
+    $controller = $this->routes->getController($controllerName);
     $page = $controller->$functionName();
     $output = $this->loadTemplate('../templates/' . $page['template'], $page['variables']);
     $title = $page['title'];
