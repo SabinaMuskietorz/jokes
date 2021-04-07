@@ -28,8 +28,5 @@ class Routes implements \CSY2028\Routes {
             exit();
         }
     }
-    public function getLayoutVariables() {
-        return ['Jokes' => $this->jokesTable->find()];
-    }
 }
 ?>
