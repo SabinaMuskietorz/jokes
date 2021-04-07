@@ -5,10 +5,10 @@ foreach($categories as $category) {
     ?>
 <blockquote>
 <p> <?=$category['name']?> <br>
-    <a href="/category/edit?id=<?= $category['id'] ?>">Edit</a>
+    <a href="/category/edit?id=<?= $category->id?>">Edit</a>
 
     <form action="/category/delete" method="POST">
-    <input type="hidden" name="id" value="<?=$category['id']?>" />
+    <input type="hidden" name="id" value="<?=$category->id?>" />
     <input type="submit" name="submit" value="Delete" />
     </form>
     </p>

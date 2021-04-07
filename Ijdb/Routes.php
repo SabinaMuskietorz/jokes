@@ -2,8 +2,9 @@
 namespace Ijdb;
 class Routes implements \CSY2028\Routes {
     public function getController($name) {
-        require '../database.php';
-        $jokesTable = new \CSY2028\DatabaseTable($pdo, 'joke', 'id');
+        require '../dbconfig.php';
+        $authorsTable = new \CSY2028\DatabaseTable($pdo, 'author', 'id');
+        $jokesTable = new \CSY2028\DatabaseTable($pdo, 'joke', 'id', 'Ijdb\Entity\Joke', [$authorsTable]);
         $categoriesTable = new \CSY2028\DatabaseTable($pdo, 'category', 'id');
         $controllers = [];
         $controllers['joke'] = new \Ijdb\Controllers\Joke($jokesTable);
@@ -26,6 +27,9 @@ class Routes implements \CSY2028\Routes {
             header('location: /user/login');
             exit();
         }
+    }
+    public function getLayoutVariables() {
+        return ['Jokes' => $this->jokesTable->find();];
     }
 }
 ?>

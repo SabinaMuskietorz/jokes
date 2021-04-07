@@ -1,4 +1,5 @@
 <?php
+namespace CSY2028;
 class DatabaseTable {
     private $pdo;
     private $table;
@@ -6,7 +7,7 @@ class DatabaseTable {
     private $entityClass;
     private $entityConstructor;
 
-    public function __construct($pdo, $table, $primarykey, $entityClass, $entityConstructor ) {
+    public function __construct($pdo, $table, $primarykey, $entityClass = 'stdclass', $entityConstructor = [] ) {
         $this->po = $pdo;
         $this->table = $table;
         $this->primaryKey = $primaryKey;
@@ -53,7 +54,7 @@ class DatabaseTable {
      try {
          $this->insert($record);
      }
-     catch (Exception $e) {
+     catch (\Exception $e) {
          $this->update($record);
         }
 }
