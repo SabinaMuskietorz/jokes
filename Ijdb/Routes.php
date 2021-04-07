@@ -7,8 +7,8 @@ class Routes implements \CSY2028\Routes {
         $jokesTable = new \CSY2028\DatabaseTable($pdo, 'joke', 'id', 'Ijdb\Entity\Joke', [$authorsTable]);
         $categoriesTable = new \CSY2028\DatabaseTable($pdo, 'category', 'id');
         $controllers = [];
-        $controllers['joke'] = new \Ijdb\Controllers\Joke($jokesTable);
-        $controllers['category'] = new \Ijdb\Controllers\Category($categoriesTable);
+        $controllers['joke'] = new \Ijdb\controllers\Joke($jokesTable);
+        $controllers['category'] = new \Ijdb\controllers\Category($categoriesTable);
         return $controllers[$name];
     }
     public function getDefaultRoute() {
@@ -22,14 +22,14 @@ class Routes implements \CSY2028\Routes {
         $loginRoutes['joke/delete'] = true;
         $loginRoutes['joke/delete'] = true;
 
-        $requires\login = $loginRoutes[$route] ?? false;
+        $requiresLogin = $loginRoutes[$route] ?? false;
         if ($requiresLogin && !isset($_SESSION['loggedin'])) {
             header('location: /user/login');
             exit();
         }
     }
     public function getLayoutVariables() {
-        return ['Jokes' => $this->jokesTable->find();];
+        return ['Jokes' => $this->jokesTable->find()];
     }
 }
 ?>
